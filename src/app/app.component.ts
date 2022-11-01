@@ -31,7 +31,49 @@ export class AppComponent {
         icon: 'home'
       },
       {
-        title: 'About',
+        title: 'Actividad',
+        url: '/actividad',
+        direct: 'forward',
+        icon: 'walk-outline'
+      },
+      {
+        title: 'Asistencia',
+        url: '/asistencia',
+        direct: 'forward',
+        icon: 'bar-chart-outline'
+      },
+      {
+        title: 'biblioteca',
+        url: '/biblioteca',
+        direct: 'forward',
+        icon: 'library-outline'
+      },
+      {
+        title: 'Curso',
+        url: '/curso',
+        direct: 'forward',
+        icon: 'layers-outline'
+      },
+      {
+        title: 'Evaluación',
+        url: '/evaluacion',
+        direct: 'forward',
+        icon: 'checkmark-done-outline'
+      },
+      {
+        title: 'inscripción',
+        url: '/incripciones',
+        direct: 'forward',
+        icon: 'book-outline'
+      },
+      {
+        title: 'materia',
+        url: '/materia',
+        direct: 'forward',
+        icon: 'albums-outline'
+      },
+      {
+        title: 'about',
         url: '/about',
         direct: 'forward',
         icon: 'information-circle-sharp'

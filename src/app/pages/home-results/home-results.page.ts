@@ -33,7 +33,7 @@ export class HomeResultsPage {
   
   searchKey = '';
   yourLocation = '123 Test Street';
-  themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
+  themeCover = 'assets/img/LogoEscritorio.png';
 
   constructor(
     public geoCtrl: Geolocation,
