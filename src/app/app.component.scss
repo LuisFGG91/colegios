@@ -1,3 +1,15 @@
+
+:host {
+  ion-content {
+      --background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+  }
+
+  ion-list {
+      &.list-md {
+          padding: 0;
+      }
+  }
+}
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -116,4 +128,11 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+}
+
+#container{
+  
+  padding: 50px;
+  margin-top: 100px; ;
+
 }

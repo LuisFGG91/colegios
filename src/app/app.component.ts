@@ -1,18 +1,65 @@
 import { Component } from '@angular/core';
+import { Pages } from './interfaces/pages';
+
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+
+import { Platform, NavController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  public appPages: Array<Pages>;
+
+  constructor(
+    private platform: Platform,
+    public navCtrl: NavController,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    
+  ) {
+    this.appPages = [
+      {
+        title: 'Home',
+        url: '/home-results',
+        direct: 'root',
+        icon: 'home'
+      },
+      {
+        title: 'About',
+        url: '/about',
+        direct: 'forward',
+        icon: 'information-circle-sharp'
+      },
+
+      {
+        title: 'App Settings',
+        url: '/settings',
+        direct: 'forward',
+        icon: 'cog'
+      },
+    ];
+    this.initializeApp();
+  }
+  initializeApp() {
+    this.platform.ready().then(() => {
+
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+    }).catch(() => {});
+  }
+  goToEditProgile() {
+    this.navCtrl.navigateForward('edit-profile');
+  }
+
+  logout() {
+    this.navCtrl.navigateRoot('/');
+  }
+
 }
