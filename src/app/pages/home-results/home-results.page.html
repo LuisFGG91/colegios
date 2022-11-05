@@ -24,9 +24,10 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="medium">
+    <ion-item lines="none" color="light">
       <ion-label>
         <h2 no-margin class="fw500 no-margin">
           <ion-text color="dark">Alert / Toast test</ion-text>
@@ -41,16 +42,21 @@
       </ion-button>
     </ion-item>
   </ion-card>
-  <ion-card class="bg-white">
+  <ion-card  no-margin class="no-radius">
+    
     <ion-img [src]="themeCover"></ion-img>
-    <ion-button expand="full" color="dark" (click)="presentImage(themeCover)" no-margin>
+
+    <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
       Modal 1: Modal Image
+    </ion-button>
+
+  </ion-card>
+  <ion-card  no-margin class="no-radius">
+    <ion-button margin shape="round" expand="full" color="primary" (click)="searchFilter()">
+      Modal 2: Search Filter
     </ion-button>
   </ion-card>
 
-  <ion-button margin shape="round" expand="full" color="dark" (click)="searchFilter()">
-    Modal 2: Search Filter
-  </ion-button>
   <popmenu></popmenu>
 </ion-content>
   

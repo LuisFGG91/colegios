@@ -23,6 +23,7 @@
     "@awesome-cordova-plugins/core": "^6.1.0",
     "@awesome-cordova-plugins/geolocation": "^6.1.0",
     "@awesome-cordova-plugins/splash-screen": "^6.1.0",
+    "@awesome-cordova-plugins/sqlite": "^6.1.0",
     "@awesome-cordova-plugins/status-bar": "^6.1.0",
     "@capacitor/app": "4.1.0",
     "@capacitor/core": "4.4.0",
@@ -30,10 +31,13 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-splashscreen": "^6.0.2",
     "cordova-plugin-statusbar": "^3.0.0",
     "ionicons": "^6.0.3",
+    "localforage-cordovasqlitedriver": "^1.8.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -60,6 +64,7 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
+    "cordova-sqlite-storage": "^6.0.0",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
@@ -83,7 +88,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "browser"

@@ -5,7 +5,7 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 import { Platform, NavController } from '@ionic/angular';
-
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +21,10 @@ export class AppComponent {
     public navCtrl: NavController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private storage: Storage,
     
   ) {
+    
     this.appPages = [
       {
         title: 'Home',
@@ -87,14 +89,17 @@ export class AppComponent {
       },
     ];
     this.initializeApp();
+    this.inonot();
   }
   initializeApp() {
-    this.platform.ready().then(() => {
 
+      this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
     }).catch(() => {});
+  }
+  async inonot(){
+    await this.storage.create();
   }
   goToEditProgile() {
     this.navCtrl.navigateForward('edit-profile');
