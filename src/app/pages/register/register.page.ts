@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, MenuController, LoadingController } from '@ionic/angular';
+import { StorageService } from '../../providers/storage/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterPage implements OnInit {
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private storageService: StorageService
   ) { }
 
   ionViewWillEnter() {
@@ -50,4 +52,34 @@ export class RegisterPage implements OnInit {
   goToLogin() {
     this.navCtrl.navigateRoot('/');
   }
+  async register(){
+
+
+    this.storageService.set('user_name', 'Shadman').then(result => {
+      console.log('Data is saved');
+      }).catch(e => {
+      console.log("error: " + e);
+      });
+
+    this.storageService.get('user_name').then(result => {
+        if (result != null) {
+        console.log('Username: '+ result);
+        }
+        }).catch(e => {
+        console.log('error: '+ e);
+        // Handle errors here
+        });
+    this.storageService.setObject('person', {name : 'Shadman', age : 26});
+
+    this.storageService.getObject('person').then(result => {
+          if (result != null) {
+          console.log('Person: '+ result);
+          }
+          }).catch(e => {
+          console.log('error: ', e);
+          });
+    //this.storageService.remove('user_name');
+    //this.storageService.clear();
+      }
+
 }

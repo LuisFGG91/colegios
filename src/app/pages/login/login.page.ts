@@ -13,13 +13,14 @@ import { BackendApiProvider } from '../../providers/backend-api/backend-api.serv
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public onLoginForm: FormGroup;
   private userFormGroup: FormGroup;
+  public data: any;
+  loading: HTMLIonLoadingElement;
   loadingBar: any;
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
-    public toastCtrl: ToastController,
+    private toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private formBuilder: FormBuilder,
@@ -119,24 +120,50 @@ export class LoginPage implements OnInit {
 
   handleSubmit(event){
 
-    this.goToHome();
-    event.preventDefault()
-    
-    
-    //this.loadingBar.present()
+
     console.log(this.userFormGroup.value) // to the http server
+    this.goToHome();
 
-    //this.backend.login(this.userFormGroup.value)
-    
-    // setTimeout(()=>{
-    //     this.loadingBar.dismiss()
-    //     this.userFormGroup.reset()
-    //     this.storage.set("authToken", "whatever")
-    //     this.navCtrl.setRoot(HomePage)
-    // }, 2000)
-/*
-
-
-*/
   }
+
+  doLogin(event) {
+    this.showLoader();
+    this.backend.login(this.userFormGroup).then((result) => {
+
+      this.data = result;
+      localStorage.setItem('token', this.data.access_token);
+      this.goToHome();
+      //this.navCtrl.setRoot(TabsPage);
+    }, (err) => {
+      //this.loadingBar.dismiss();
+      this.presentToast(err);
+    });
+  }
+
+  register() {
+
+
+
+
+    //this.navCtrl.push(RegisterPage);
+  }
+
+  async showLoader(){
+    this.loading = await this.loadingCtrl.create({message: "Please wait..."});
+    await this.loading.present();
+  }
+
+  async presentToast(msg) {
+
+    const toast = await this.toastCtrl.create({
+      message: msg ,
+      duration: 3000,
+      position: 'bottom',
+        });
+
+    toast.present();
+  }
+
+
+
 }

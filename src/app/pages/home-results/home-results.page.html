@@ -50,12 +50,48 @@
       Modal 1: Modal Image
     </ion-button>
 
+    <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
+      Modal 1: Modal Image
+    </ion-button>
+
   </ion-card>
   <ion-card  no-margin class="no-radius">
-    <ion-button margin shape="round" expand="full" color="primary" (click)="searchFilter()">
-      Modal 2: Search Filter
+    <ion-button margin shape="round" expand="full" color="primary" (click)="starscan()">
+      QR
     </ion-button>
   </ion-card>
+
+
+  <ion-card  no-margin class="no-radius">
+    <ion-button margin shape="round" expand="full" color="primary" (click)="toggleFlashLight()">
+      Linterna 
+    </ion-button>
+  </ion-card>
+  <ion-card  no-margin class="no-radius">
+    <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
+      <ion-icon slot="start" name="refresh"></ion-icon>
+      Resetear
+    </ion-button>
+  </ion-card>
+  <ion-card  no-margin class="no-radius">
+    <video #video [hidden]="!scanActive" width="100%"></video>
+    <canvas #canvas hidden></canvas>
+  </ion-card>
+
+  <ion-card  no-margin class="no-radius">
+    <ion-button expand="full" (click)="stopscan()" color="warning" *ngIf="scanActive">
+      <ion-icon slot="start" name="close"></ion-icon>
+      Parar Camara
+    </ion-button>
+  </ion-card>
+   <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>Codigo QR</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ scanResult }}
+    </ion-card-content>
+   </ion-card>
 
   <popmenu></popmenu>
 </ion-content>
