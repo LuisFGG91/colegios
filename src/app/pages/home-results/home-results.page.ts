@@ -21,10 +21,13 @@ import { Geolocation, Geoposition } from '@awesome-cordova-plugins/geolocation/n
 
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
+import { Injectable } from '@angular/core';
 
-var lat = 0;
-var lon = 0;
+import { Storage } from '@ionic/storage-angular';
 
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-home-results',
@@ -36,6 +39,7 @@ var lon = 0;
 
 
 export class HomeResultsPage {
+  private _storage: Storage | null = null;
   private isBackMode: boolean = true;
   private isFlashLightOn: boolean = false;
   private scanSub: any;
@@ -45,6 +49,10 @@ export class HomeResultsPage {
   public videoElement: any;
   public canvasElement: any;
   public canvasContext: any;
+
+  public lat = 0;
+  public lon = 0;
+
   @ViewChild('video',{static:false}) video: ElementRef;
   @ViewChild('canvas',{static:false}) canvas: ElementRef;
   loading: HTMLIonLoadingElement;
@@ -55,7 +63,7 @@ export class HomeResultsPage {
 
   constructor(
 
- 
+    private storage: Storage,
     public geoCtrl: Geolocation,
     public navCtrl: NavController,
     public menuCtrl: MenuController,
@@ -101,7 +109,7 @@ export class HomeResultsPage {
             console.log('Change clicked', data);
 
             this.yourLocation = data.location;
-            this.yourLocation = lat + ' || ' + lon;
+            this.yourLocation = this.lat + ' || ' + this.lon;
             const toast = await this.toastCtrl.create({
               message: 'Location was change successfully',
               duration: 3000,
@@ -141,11 +149,15 @@ export class HomeResultsPage {
     this.otraForma();
   }
   async obtGeo() {
+
+
     this.geoCtrl.getCurrentPosition().then((resp) => {
+
       console.log(resp.coords.latitude)
       console.log(resp.coords.longitude)
-      lat = resp.coords.latitude;
-      lon = resp.coords.longitude;
+
+      this.lat = resp.coords.latitude;
+      this.lon = resp.coords.longitude;
 
     }).catch((error) => {
       console.log('Ocurrio un Error al obterner las coordinadas', error);
@@ -187,10 +199,18 @@ export class HomeResultsPage {
   captar(){
     this.barcodeScanner.scan().then(barcodeData => {
       this.code = barcodeData.text;
+
+
+      this.set('scaner',barcodeData.text)
+
       console.log('Barcode data', barcodeData);
     }).catch(err => {
         console.log('Error', err);
     });
+
+
+
+
   }
 
   async starscan(){
@@ -266,5 +286,8 @@ export class HomeResultsPage {
     toast.present();
   }
 
+  public set(key: string, value: any) {
+    this._storage?.set(key, value);
+  }
 
 }

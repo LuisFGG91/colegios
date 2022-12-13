@@ -8,7 +8,6 @@ import { PopmenuComponent } from '../../components/popmenu/popmenu.component';
 
 import { HomeResultsPage } from './home-results.page';
 
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 const routes: Routes = [
   {
@@ -24,7 +23,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    QRScanner
   ],
   declarations: [HomeResultsPage, PopmenuComponent]
 })

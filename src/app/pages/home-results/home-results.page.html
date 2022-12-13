@@ -42,26 +42,53 @@
       </ion-button>
     </ion-item>
   </ion-card>
+
   <ion-card  no-margin class="no-radius">
     
     <ion-img [src]="themeCover"></ion-img>
 
-    <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
-      Modal 1: Modal Image
-    </ion-button>
-
-    <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
-      Modal 1: Modal Image
-    </ion-button>
-
   </ion-card>
+
   <ion-card  no-margin class="no-radius">
-    <ion-button margin shape="round" expand="full" color="primary" (click)="starscan()">
+    <ion-button margin shape="round" expand="full" color="primary" (click)="captar()">
       QR
     </ion-button>
+
+    <ion-item ng-repeat="item in items">
+      Ultimo Scan {{ code }}
+    </ion-item>
+
   </ion-card>
 
+  <ion-card  no-margin class="no-radius">
+    <ion-button margin shape="round" expand="full" color="primary" (click)="obtGeo()">
+      Geo Localizacion
+    </ion-button>
 
+    <ion-grid>
+      <ion-row>
+        <ion-col> Latitud </ion-col>
+        <ion-col> Longitud </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> {{lat}} </ion-col>
+        <ion-col> {{lon}} </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+ 
+
+  
+  </ion-card>
+<!--
+
+      <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
+      Modal 1: Modal Image
+    </ion-button>
+
+    <ion-button margin shape="round" expand="full" color="primary" (click)="presentImage(themeCover)">
+      Modal 1: Modal Image
+    </ion-button>
   <ion-card  no-margin class="no-radius">
     <ion-button margin shape="round" expand="full" color="primary" (click)="toggleFlashLight()">
       Linterna 
@@ -92,6 +119,7 @@
       {{ scanResult }}
     </ion-card-content>
    </ion-card>
+-->
 
   <popmenu></popmenu>
 </ion-content>

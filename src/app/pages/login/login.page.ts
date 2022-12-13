@@ -33,8 +33,8 @@ export class LoginPage implements OnInit {
     console.log('Hello AuthComponent Component');
 
     this.userFormGroup = this.formBuilder.group({
-        "username" : ['', Validators.required],
-        "password" : ['', Validators.required]
+        "username" : ["", Validators.required],
+        "password" : ["", Validators.required]
 
     })
     this.createLoadingBar()
@@ -101,7 +101,7 @@ export class LoginPage implements OnInit {
   goToRegister() {
     this.navCtrl.navigateRoot('/register');
   }
-  goToHome() {
+  goToHome(event) {
     this.navCtrl.navigateRoot('/home-results');
   }
   createLoadingBar(){
@@ -119,23 +119,24 @@ export class LoginPage implements OnInit {
   }
 
   handleSubmit(event){
-
-
     console.log(this.userFormGroup.value) // to the http server
-    this.goToHome();
+    this.doLogin(event);
 
   }
 
   doLogin(event) {
-    this.showLoader();
-    this.backend.login(this.userFormGroup).then((result) => {
+   // this.showLoader();
+    console.log(this.userFormGroup.value) // to the http server
 
+    this.backend.login(this.userFormGroup.value).then((result) => {
       this.data = result;
-      localStorage.setItem('token', this.data.access_token);
-      this.goToHome();
+      console.log(this.data);
+      //this.loadingBar.dismiss();
+      //localStorage.setItem('token', this.data.token);
+      //this.goToHome();
       //this.navCtrl.setRoot(TabsPage);
     }, (err) => {
-      //this.loadingBar.dismiss();
+      this.loadingBar.dismiss();
       this.presentToast(err);
     });
   }

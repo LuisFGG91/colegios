@@ -19,3 +19,26 @@ Anto1013,,
 
 
 Benjamin Castro
+
+
+virtualenv env --python=python3 
+source ./env/bin/activate
+
+./env/bin/pip install nodeenv
+./env/bin/nodeenv --python-virtualenv --node=16.18.1 
+./env/bin/npm install    
+./env/bin/npm install -g @ionic/cli
+./env/bin/npm run start≈
+./env/bin/npm run start≈
+
+./env/bin/npm run build
+./env/bin/npx cap sync
+./env/bin/ionic cap sync
+
+./env/bin/ionic serve -l  
+
+
+./env/bin/ionic cordova plugin add cordova-plugin-statusbar
+./env/bin/npm install @ionic-native/status-bar
+./env/bin/npm i @ionic-native/core
+

@@ -40,7 +40,8 @@ interface ItemsResponse {
       return new Promise((resolve, reject) => {
           let headers = new HttpHeaders();
           headers.append('Content-Type', 'application/json');
-          this.http.post(this.webAPIUrl+'/api/auth/token-auth-cl/', JSON.stringify(credentials), {headers: headers})
+          var request = { "username": "lguerrero", "password": "anto1013" };
+          this.http.post(this.webAPIUrl+'/api/auth/token-auth-cl/', request, {headers: headers})
           .subscribe(
             response => {
               resolve(response);
