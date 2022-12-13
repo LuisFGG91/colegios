@@ -15,10 +15,7 @@ npm install @awesome-cordova-plugins/geolocation
 ionic cap sync
 
 ./env/bin/pip install nodeenv
-Anto1013,,
 
-
-Benjamin Castro
 
 
 virtualenv env --python=python3 
